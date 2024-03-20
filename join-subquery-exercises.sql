@@ -41,12 +41,12 @@ WHERE amount > 7;
 -- Question 3
 -- Show all customer names who have made over $175 in payments (use subqueries)
 -- Using JOINS
-SELECT c.first_name, c.last_name, SUM(amount) AS total
-FROM customer c 
-JOIN payment p
-ON c.customer_id = p.customer_id
-GROUP BY c.first_name, c.last_name 
-HAVING SUM(amount) > 175;
+--SELECT c.first_name, c.last_name, SUM(amount) AS total
+--FROM customer c 
+--JOIN payment p
+--ON c.customer_id = p.customer_id
+--GROUP BY c.first_name, c.last_name 
+--HAVING SUM(amount) > 175;
 
 -- USING subqueries
 SELECT *
@@ -57,7 +57,6 @@ WHERE customer_id IN (
 	GROUP BY customer_id 
 	HAVING SUM(amount) > 175
 );
-
 
 --customer_id|store_id|first_name|last_name|email                            |address_id|activebool|create_date|last_update            |active|
 -------------+--------+----------+---------+---------------------------------+----------+----------+-----------+-----------------------+------+
@@ -80,7 +79,6 @@ ON cty.city_id = a.city_id
 JOIN country ctry
 ON ctry.country_id = cty.country_id
 WHERE ctry.country = 'Argentina';
-
 
 --first_name|last_name|district    |city                |country  |
 ------------+---------+------------+--------------------+---------+
@@ -111,7 +109,6 @@ ON c.category_id = fc.category_id
 GROUP BY c.category_id, c."name"
 ORDER BY COUNT(*) DESC;
 
-
 --category_id|name       |num_movies_in_cat|
 -------------+-----------+-----------------+
 --         15|Sports     |               74|
@@ -132,7 +129,6 @@ ORDER BY COUNT(*) DESC;
 --         12|Music      |               51|
 
 
-
 -- Question 6
 -- What film had the most actors in it (show film info)?
 -- Use film_actor and film
@@ -143,7 +139,6 @@ ON f.film_id = fa.film_id
 GROUP BY f.film_id, f.title
 ORDER BY COUNT(*) DESC
 LIMIT 1;
-
 
 --film_id|title           |num_actors|
 ---------+----------------+----------+
@@ -159,7 +154,6 @@ ON a.actor_id = fa.actor_id
 GROUP BY a.actor_id, a.first_name, a.last_name
 ORDER BY COUNT(*) ASC
 LIMIT 1;
-
 
 --actor_id|first_name|last_name|num_films|
 ----------+----------+---------+---------+
@@ -197,7 +191,6 @@ FROM (
 	ORDER BY COUNT(*) ASC
 ) AS film_counts
 WHERE num_films BETWEEN 20 AND 25;
-
 
 --actor_id|first_name |last_name  |count|
 ----------+-----------+-----------+-----+
